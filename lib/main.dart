@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_fight_club/fight_club_colors.dart';
 import 'package:flutter_fight_club/fight_club_icons.dart';
+import 'package:flutter_fight_club/fight_club_images.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -68,7 +69,7 @@ class MyHomePageState extends State<MyHomePage> {
                   child: ColoredBox(
                     color: FightClubColors.backgroundCenteredBox,
                     child: Center(
-                      child: Text(
+                      child:  Text(
                         centeredText,
                         textAlign: TextAlign.center,
                         style: TextStyle(color: FightClubColors.darkGreyText),
@@ -267,17 +268,14 @@ class FightersInfo extends StatelessWidget {
                 currentLivesCount: yourLivesCount,
               ),
               Column(
-                children: const [
-                  SizedBox(height: 16),
-                  Text(
+                children: [
+                  const SizedBox(height: 16),
+                  const Text(
                     "You",
                     style: TextStyle(color: FightClubColors.darkGreyText),
                   ),
-                  SizedBox(height: 12),
-                  ColoredBox(
-                    color: Colors.red,
-                    child: SizedBox(height: 92, width: 92),
-                  ),
+                  const SizedBox(height: 12),
+                  Image.asset(FightClubImages.youAvatar, height: 92, width: 92),
                 ],
               ),
               ColoredBox(
@@ -285,17 +283,14 @@ class FightersInfo extends StatelessWidget {
                 child: SizedBox(height: 44, width: 44),
               ),
               Column(
-                children: const [
-                  SizedBox(height: 16),
-                  Text(
+                children: [
+                  const SizedBox(height: 16),
+                  const Text(
                     "Enemy",
                     style: TextStyle(color: FightClubColors.darkGreyText),
                   ),
-                  SizedBox(height: 12),
-                  ColoredBox(
-                    color: Colors.green,
-                    child: SizedBox(height: 92, width: 92),
-                  ),
+                  const SizedBox(height: 12),
+                  Image.asset(FightClubImages.enemyAvatar, height: 92, width: 92),
                 ],
               ),
               LivesWidget(
