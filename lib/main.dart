@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_fight_club/fight_club_colors.dart';
 import 'package:flutter_fight_club/fight_club_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,7 +48,7 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(213, 222, 240, 1),
+      backgroundColor: FightClubColors.background,
       body: SafeArea(
         child: Column(
           children: [
@@ -79,11 +80,11 @@ class MyHomePageState extends State<MyHomePage> {
 
   Color _getGoButtonColor() {
     if (yourLives == 0 || enemysLives == 0) {
-      return const Color.fromRGBO(0, 0, 0, 0.87);
+      return FightClubColors.darkGreyText;
     } else if (attackingBodyPart == null || defendingBodyPart == null) {
-      return Colors.black38;
+      return FightClubColors.greyButton;
     } else {
-      return const Color.fromRGBO(0, 0, 0, 0.87);
+      return FightClubColors.darkGreyText;
     }
   }
 
@@ -163,7 +164,7 @@ class GoButton extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 16,
-                  color: Colors.white,
+                  color: FightClubColors.whiteText,
                 ),
               ),
             ),
@@ -387,9 +388,9 @@ class BodyPartButton extends StatelessWidget {
         height: 40,
         child: ColoredBox(
           color:
-              selected ? const Color.fromRGBO(28, 121, 206, 1) : Colors.black38,
+              selected ? FightClubColors.blueButton : FightClubColors.greyButton,
           child: Center(
-            child: Text(bodyPart.name.toUpperCase()),
+            child: Text(bodyPart.name.toUpperCase(), style: TextStyle(color: selected ? FightClubColors.whiteText : FightClubColors.darkGreyText,),),
           ),
         ),
       ),
