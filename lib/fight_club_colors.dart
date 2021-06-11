@@ -11,4 +11,5 @@ class FightClubColors {
   static const whiteText = Color(0xDDFFFFFF);
   static const substrateLeft = Colors.white;
   static const substrateRight = Color(0xFFC5D1EA);
+  static const backgroundCenteredBox = Color(0xFFC5D1EA);
 }
