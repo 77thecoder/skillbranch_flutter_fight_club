@@ -59,13 +59,12 @@ class MyHomePageState extends State<MyHomePage> {
               yourLivesCount: yourLives,
               enemysLivesCount: enemysLives,
             ),
-            Expanded(child: const SizedBox()),
             Expanded(
               child: SizedBox(
                 width: double.infinity,
                 height: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
                   child: ColoredBox(
                     color: FightClubColors.backgroundCenteredBox,
                     child: Center(
@@ -79,7 +78,6 @@ class MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Expanded(child: const SizedBox()),
             ControlsWidget(
               defendingBodyPart: defendingBodyPart,
               selectDefendingBodyPart: _selectDefendingBodyPart,
