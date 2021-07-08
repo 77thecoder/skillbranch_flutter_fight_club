@@ -46,7 +46,7 @@ class MyHomePageState extends State<MyHomePage> {
   int yourLives = maxLives;
   int enemysLives = maxLives;
 
-  String centeredText = 'null';
+  String centeredText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +65,12 @@ class MyHomePageState extends State<MyHomePage> {
                 width: double.infinity,
                 height: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 30.0),
                   child: ColoredBox(
                     color: FightClubColors.backgroundCenteredBox,
                     child: Center(
-                      child:  Text(
+                      child: Text(
                         centeredText,
                         textAlign: TextAlign.center,
                         style: TextStyle(color: FightClubColors.darkGreyText),
@@ -132,6 +133,24 @@ class MyHomePageState extends State<MyHomePage> {
         whatEnemyAttacks = BodyPart.random();
         attackingBodyPart = null;
         defendingBodyPart = null;
+      });
+    }
+
+    _getCenteredText();
+  }
+
+  void _getCenteredText() {
+    if (yourLives == 0 && enemysLives == 0) {
+      setState(() {
+        centeredText = 'Draw';
+      });
+    } else if (yourLives == 0 && enemysLives > 0) {
+      setState(() {
+        centeredText = 'You lost';
+      });
+    } else if (yourLives > 0 && enemysLives == 0) {
+      setState(() {
+        centeredText = 'You won';
       });
     }
   }
@@ -290,7 +309,8 @@ class FightersInfo extends StatelessWidget {
                     style: TextStyle(color: FightClubColors.darkGreyText),
                   ),
                   const SizedBox(height: 12),
-                  Image.asset(FightClubImages.enemyAvatar, height: 92, width: 92),
+                  Image.asset(FightClubImages.enemyAvatar,
+                      height: 92, width: 92),
                 ],
               ),
               LivesWidget(
@@ -404,8 +424,10 @@ class LivesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: List.generate(overallLivesCount, (index) {
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(
+        overallLivesCount,
+        (index) {
           if (index < currentLivesCount) {
             return Image.asset(
               FightClubIcons.heartFull,
@@ -419,7 +441,9 @@ class LivesWidget extends StatelessWidget {
               height: 18,
             );
           }
-        }));
+        },
+      ),
+    );
   }
 }
 
