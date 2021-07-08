@@ -156,9 +156,9 @@ class MyHomePageState extends State<MyHomePage> {
     } else {
       final firstLine = attackingBodyPart == whatEnemyDefends
           ? 'Your attack was blocked.'
-          : 'You hit enemy’s  ${attackingBodyPart?.name.toLowerCase()}.';
+          : 'You hit enemy\'s  ${attackingBodyPart?.name.toLowerCase()}.';
       final secondLine = defendingBodyPart == whatEnemyAttacks
-          ? 'Enemy’s attack was blocked.'
+          ? 'Enemy\'s attack was blocked.'
           : 'Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}.';
       centeredText = '$firstLine\n$secondLine';
     }
@@ -437,19 +437,17 @@ class LivesWidget extends StatelessWidget {
       children: List.generate(
         overallLivesCount,
         (index) {
-          if (index < currentLivesCount) {
-            return Image.asset(
-              FightClubIcons.heartFull,
+          return Padding(
+            padding:
+                EdgeInsets.only(bottom: index < overallLivesCount - 1 ? 4 : 0),
+            child: Image.asset(
+              index < currentLivesCount
+                  ? FightClubIcons.heartFull
+                  : FightClubIcons.heartEmpty,
               width: 18,
               height: 18,
-            );
-          } else {
-            return Image.asset(
-              FightClubIcons.heartEmpty,
-              width: 18,
-              height: 18,
-            );
-          }
+            ),
+          );
         },
       ),
     );
