@@ -131,12 +131,13 @@ class MyHomePageState extends State<MyHomePage> {
 
         whatEnemyDefends = BodyPart.random();
         whatEnemyAttacks = BodyPart.random();
-        attackingBodyPart = null;
-        defendingBodyPart = null;
       });
     }
 
     _getCenteredText();
+
+    attackingBodyPart = null;
+    defendingBodyPart = null;
   }
 
   void _getCenteredText() {
@@ -152,6 +153,14 @@ class MyHomePageState extends State<MyHomePage> {
       setState(() {
         centeredText = 'You won';
       });
+    } else {
+      final firstLine = attackingBodyPart == whatEnemyDefends
+          ? 'Your attack was blocked.'
+          : 'You hit enemy’s  ${attackingBodyPart?.name.toLowerCase()}.';
+      final secondLine = defendingBodyPart == whatEnemyAttacks
+          ? 'Enemy’s attack was blocked.'
+          : 'Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}.';
+      centeredText = '$firstLine\n$secondLine';
     }
   }
 
