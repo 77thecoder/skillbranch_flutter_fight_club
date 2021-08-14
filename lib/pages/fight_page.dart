@@ -1,10 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/fight_result.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/resources/fight_club_icons.dart';
 import 'package:flutter_fight_club/resources/fight_club_images.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FightPage extends StatefulWidget {
   FightPage({Key? key}) : super(key: key);
@@ -26,6 +28,17 @@ class _FightPageState extends State<FightPage> {
   int enemysLives = maxLives;
 
   String centeredText = '';
+  late SharedPreferences sharedPreferences;
+
+  Future<void> init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,14 +136,20 @@ class _FightPageState extends State<FightPage> {
     if (yourLives == 0 && enemysLives == 0) {
       setState(() {
         centeredText = 'Draw';
+        sharedPreferences.setString(
+            'last_fight_result', FightResult.draw.toString());
       });
     } else if (yourLives == 0 && enemysLives > 0) {
       setState(() {
         centeredText = 'You lost';
+        sharedPreferences.setString(
+            'last_fight_result', FightResult.lost.toString());
       });
     } else if (yourLives > 0 && enemysLives == 0) {
       setState(() {
         centeredText = 'You won';
+        sharedPreferences.setString(
+            'last_fight_result', FightResult.won.toString());
       });
     } else {
       final firstLine = attackingBodyPart == whatEnemyDefends
@@ -411,10 +430,13 @@ class BodyPartButton extends StatelessWidget {
       onTap: () => bodyPartSetter(bodyPart),
       child: SizedBox(
         height: 40,
-        child: ColoredBox(
-          color: selected
-              ? FightClubColors.blueButton
-              : FightClubColors.greyButton,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: selected ? FightClubColors.blueButton : Colors.transparent,
+            border: !selected
+                ? Border.all(color: FightClubColors.darkGreyText, width: 2)
+                : null,
+          ),
           child: Center(
             child: Text(
               bodyPart.name.toUpperCase(),
