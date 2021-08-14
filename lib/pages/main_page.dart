@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fight_club/fight_result.dart';
 import 'package:flutter_fight_club/pages/fight_page.dart';
 import 'package:flutter_fight_club/pages/statistics_page.dart';
 import 'package:flutter_fight_club/resources/fight_club_colors.dart';
 import 'package:flutter_fight_club/widgets/action_button.dart';
+import 'package:flutter_fight_club/widgets/fight_result_widget.dart';
 import 'package:flutter_fight_club/widgets/secondary_action_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,7 +48,51 @@ class _MainPageContent extends StatelessWidget {
                 if (!snapshot.hasData || snapshot.data == null) {
                   return const SizedBox();
                 }
-                return Center(child: Text(snapshot.data!));
+                // return Center(child: Text(snapshot.data!));
+                if (snapshot.data! == 'FightResult{result: Won}') {
+                  return Column(
+                    children: [
+                      Text(
+                        'Last fight result',
+                        style: TextStyle(
+                          color: FightClubColors.darkGreyText,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      FightResultWidget(fightResult: FightResult.won),
+                    ],
+                  );
+                } else if (snapshot.data! == 'FightResult{result: Lost}') {
+                  return Column(
+                    children: [
+                      Text(
+                        'Last fight result',
+                        style: TextStyle(
+                          color: FightClubColors.darkGreyText,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      FightResultWidget(fightResult: FightResult.lost),
+                    ],
+                  );
+                } else if (snapshot.data! == 'FightResult{result: Draw}') {
+                  return Column(
+                    children: [
+                      Text(
+                        'Last fight result',
+                        style: TextStyle(
+                          color: FightClubColors.darkGreyText,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      FightResultWidget(fightResult: FightResult.draw),
+                    ],
+                  );
+                }
+                return SizedBox();
               },
             ),
             const Expanded(child: SizedBox()),
