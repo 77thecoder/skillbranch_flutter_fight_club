@@ -202,27 +202,21 @@ class FightersInfo extends StatelessWidget {
       child: Stack(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Expanded(child: ColoredBox(color: Colors.white)),
               Expanded(
-                child: ColoredBox(
-                  color: FightClubColors.substrateLeft,
-                  child: SizedBox(
-                    height: 160,
-                    width: 180,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.white, FightClubColors.darkPurple],
+                    ),
                   ),
                 ),
               ),
               Expanded(
-                child: ColoredBox(
-                  color: FightClubColors.substrateRight,
-                  child: SizedBox(
-                    height: 160,
-                    width: 180,
-                  ),
-                ),
-              ),
+                child: ColoredBox(color: FightClubColors.darkPurple),
+              )
             ],
           ),
           Row(
@@ -243,9 +237,24 @@ class FightersInfo extends StatelessWidget {
                   Image.asset(FightClubImages.youAvatar, height: 92, width: 92),
                 ],
               ),
-              ColoredBox(
-                color: Colors.green,
-                child: SizedBox(height: 44, width: 44),
+              SizedBox(
+                height: 44,
+                width: 44,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: FightClubColors.blueButton,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'vs',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               Column(
                 children: [
